@@ -36,7 +36,7 @@
     if (honeypot.value) return;
 
     const customer = name.value.trim();
-    const message = `Позиция: ${item}`;
+    const message = trigger.dataset.request || `меня интересует: ${item}.`;
     const fallback = `${telegram}?text=${encodeURIComponent(`Заказ звонка: ${number}${customer ? ` (${customer})` : ''}. ${message}`)}`;
     const send = document.querySelector('#callback-send');
     send.disabled = true;
