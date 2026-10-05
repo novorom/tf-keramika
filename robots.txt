@@ -1,0 +1,8 @@
+User-agent: Yandex
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: *
+Allow: /

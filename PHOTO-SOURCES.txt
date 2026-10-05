@@ -1,0 +1,19 @@
+PHOTO SOURCES / VERIFICATION NOTES
+=================================
+
+This v3 package keeps all product thumbnails local under img/products/.
+The local thumbnails are catalog placeholders generated from the product name,
+brand and size; they are NOT presented as manufacturer photographs.
+
+Verified official product/catalog references used for matching:
+- KERAMA MARAZZI — Mirabeau series:
+  https://kerama-marazzi.com/catalog/series/gres/mirabeau/
+- KERAMA MARAZZI — Mirabeau grey rectified 60x60:
+  https://kerama-marazzi.com/catalog/gres/dd638520r/
+- KERAMA MARAZZI — Mirabeau dark grey rectified 60x60:
+  https://kerama-marazzi.com/catalog/gres/dd638620r/
+- Нефрит-Керамика — Джойс светлый 500x250:
+  https://nefrit.ru/Dzhois/Dzhois-00-00-5-10-00-20-3030/
+
+The source landing page contains 192 stock positions and 175 unique
+brand/name combinations. No product data was changed.
