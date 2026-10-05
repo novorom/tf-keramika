@@ -986,6 +986,76 @@
       "source": "/catalog/keramogranit-spb/index.html",
       "destination": "/catalog/keramogranit-spb/",
       "permanent": true
+    },
+    {
+      "source": "/brands/kerama-marazzi/index.html",
+      "destination": "/brands/kerama-marazzi/",
+      "permanent": true
+    },
+    {
+      "source": "/brands/unitile-g-shakhty/index.html",
+      "destination": "/brands/unitile-g-shakhty/",
+      "permanent": true
+    },
+    {
+      "source": "/brands/grani-taganaya/index.html",
+      "destination": "/brands/grani-taganaya/",
+      "permanent": true
+    },
+    {
+      "source": "/brands/kvadro-dekor/index.html",
+      "destination": "/brands/kvadro-dekor/",
+      "permanent": true
+    },
+    {
+      "source": "/brands/m-kvadrat/index.html",
+      "destination": "/brands/m-kvadrat/",
+      "permanent": true
+    },
+    {
+      "source": "/brands/nefrit-keramika/index.html",
+      "destination": "/brands/nefrit-keramika/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/600x600/index.html",
+      "destination": "/formats/600x600/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/600x300/index.html",
+      "destination": "/formats/600x300/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/400x200/index.html",
+      "destination": "/formats/400x200/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/500x250/index.html",
+      "destination": "/formats/500x250/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/450x450/index.html",
+      "destination": "/formats/450x450/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/1200x600/index.html",
+      "destination": "/formats/1200x600/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/600x200/index.html",
+      "destination": "/formats/600x200/",
+      "permanent": true
+    },
+    {
+      "source": "/formats/300x300/index.html",
+      "destination": "/formats/300x300/",
+      "permanent": true
     }
   ]
 }
