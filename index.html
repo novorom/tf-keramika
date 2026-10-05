@@ -109,6 +109,7 @@ table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;
 <select id="sort" aria-label="Сортировка"><option value="stock">Сначала больше остаток</option><option value="asc">Сначала дешевле</option><option value="desc">Сначала дороже</option></select>
 </div>
 <div class="tools" id="chips" role="group" aria-label="Размер"></div>
+<div class="tools" aria-label="Цвет товара"><span class="filter-label">Цвет:</span><div class="tools" id="color-chips" role="group" aria-label="Фильтр по цвету" style="margin:0"></div></div>
 <p class="note">Откройте товар, чтобы посмотреть фото и характеристики. Цены за м², с НДС. В списке остатки от 30 м². Обновлено: <span id="upd"></span>.</p>
 <p class="note" id="count" aria-live="polite" style="font-weight:700;color:var(--ink)">Найдено: 191 позиция</p>
 <div class="list" id="list"><a class="row" data-i="0" href="products/mirabo-seryy-obreznoy-600-600-9-mm-1-sort/index.html"><div class="sw"><img src="img/photos/001.jpg" alt="Мирабо Серый Обрезной" loading="lazy" decoding="async"></div><div><div class="nm">Мирабо Серый Обрезной</div><div class="sub">600 × 600 × 9 мм, Kerama Marazzi, 1 сорт</div><div class="sub">В наличии 7 848 м²</div><div class="sub">Артикул: DD638520R</div></div><div class="price ask">Цена по запросу</div></a>
@@ -404,11 +405,28 @@ const keys=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]);
 const FORCE=['400×400','400×250','200×200'];
 const TOP=keys.slice(0,8);FORCE.forEach(k=>{if(cnt[k]&&!TOP.includes(k))TOP.push(k)});
 const hasOther=keys.length>TOP.length;
-let cat='all', sel=new Set(), shown=40;
+const COLOR_RULES=[
+ ['Серый',/сер|\bgrey\b|\bgray\b/i],['Белый',/бел|\bwhite\b|\bice\b/i],['Бежевый',/беж|\bbeige\b|\bcrema\b/i],
+ ['Песочный',/песоч/i],['Чёрный',/черн|чёрн|\bblack\b/i],['Коричневый',/корич|\bbrown\b|\bamber\b/i],
+ ['Терракотовый',/терракот/i],['Красный',/красн|\bred\b/i],['Оранжевый',/оранж|\borange\b/i],
+ ['Жёлтый',/желт|жёлт|\byellow\b/i],['Зелёный',/зелен|\bgreen\b|\bolive\b/i],
+ ['Бирюзовый',/бирюз|\bturquoise\b/i],['Синий',/син|голуб|\bblue\b|\bnavy\b/i],
+ ['Розовый',/роз|\bpink\b/i],['Фиолетовый',/фиол|лилов|\bpurple\b/i]
+];
+function colorOf(it){
+ const name=it.n||'';
+ for(const [color,re] of COLOR_RULES)if(re.test(name))return color;
+ if(/светл/i.test(name))return 'Белый';
+ return 'Другие';
+}
+const colorCounts={};ITEMS.forEach(it=>{const c=colorOf(it);colorCounts[c]=(colorCounts[c]||0)+1});
+const COLORS=Object.keys(colorCounts).sort((a,b)=>a==='Другие'?1:b==='Другие'?-1:a.localeCompare(b,'ru'));
+let cat='all', sel=new Set(), colorSel=new Set(), shown=40;
 $('#chips').innerHTML=TOP.map(k=>'<button class="chip" data-k="'+k+'" aria-pressed="false">'+k+'</button>').join('')+(hasOther?'<button class="chip" data-k="other" aria-pressed="false">Другие размеры</button>':'');
+$('#color-chips').innerHTML=COLORS.map(c=>'<button class="chip" data-color="'+c+'" aria-pressed="false">'+c+' <span class="sub">('+colorCounts[c]+')</span></button>').join('');
 function ok(it){
  const q=$('#q').value.trim().toLowerCase();
- return (cat==='all'||it.t===cat)&&(!sel.size||sel.has(it.k)||(sel.has('other')&&!TOP.includes(it.k)))&&(it.n+' '+it.s+' '+it.b+' '+(it.a||'')).toLowerCase().includes(q);
+ return (cat==='all'||it.t===cat)&&(!sel.size||sel.has(it.k)||(sel.has('other')&&!TOP.includes(it.k)))&&(!colorSel.size||colorSel.has(colorOf(it)))&&(it.n+' '+it.s+' '+it.b+' '+(it.a||'')).toLowerCase().includes(q);
 }
 function render(){
  let rows=ITEMS.map((it,i)=>({it,i})).filter(({it})=>ok(it));
@@ -424,7 +442,8 @@ function render(){
 }
 const reset=()=>{shown=40;render()};
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{cat=b.dataset.cat;document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-pressed',t===b));reset()});
-document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=b.dataset.k;sel.has(k)?sel.delete(k):sel.add(k);b.setAttribute('aria-pressed',sel.has(k));reset()});
+document.querySelectorAll('#chips .chip').forEach(b=>b.onclick=()=>{const k=b.dataset.k;sel.has(k)?sel.delete(k):sel.add(k);b.setAttribute('aria-pressed',sel.has(k));reset()});
+document.querySelectorAll('#color-chips .chip').forEach(b=>b.onclick=()=>{const c=b.dataset.color;colorSel.has(c)?colorSel.delete(c):colorSel.add(c);b.setAttribute('aria-pressed',colorSel.has(c));reset()});
 $('#q').oninput=reset;
 $('#sort').onchange=reset;
 $('#more').onclick=()=>{shown+=40;render()};
