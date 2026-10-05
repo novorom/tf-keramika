@@ -1,0 +1,991 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/products/mirabo-seryy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/mirabo-seryy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhoys-svetlyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/dzhoys-svetlyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/bianco-belyy-450-450-8-mm-gost/index.html",
+      "destination": "/products/bianco-belyy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/terrazzo-mix-bezhevyy-450-450-8-mm-gost/index.html",
+      "destination": "/products/terrazzo-mix-bezhevyy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/astaria-ice-belyy-450-450-8-mm-gost/index.html",
+      "destination": "/products/astaria-ice-belyy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/hornito-amber-korichnevyy-svetlyy-450-450-8-mm-gost/index.html",
+      "destination": "/products/hornito-amber-korichnevyy-svetlyy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/keramogranit-tekhnicheskiy-sol-perets-seryy-matovaya-300-300-7-mm/index.html",
+      "destination": "/products/keramogranit-tekhnicheskiy-sol-perets-seryy-matovaya-300-300-7-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/toronto-betton-grey-450-450-8-mm-gost/index.html",
+      "destination": "/products/toronto-betton-grey-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/ferrum-korichnevyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/ferrum-korichnevyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/mirabo-seryy-temnyy-matovyy-obreznoy-600-1200-9-mm-1-sort/index.html",
+      "destination": "/products/mirabo-seryy-temnyy-matovyy-obreznoy-600-1200-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/terratstso-seryy-600-600-10-mm-gost/index.html",
+      "destination": "/products/terratstso-seryy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kanon-seryy-svetlyy-450-450-8-mm-gost/index.html",
+      "destination": "/products/kanon-seryy-svetlyy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kids-belyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kids-belyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sanar-seryy-600-600-10-mm-gost/index.html",
+      "destination": "/products/sanar-seryy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/mirabo-bezhevyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/mirabo-bezhevyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dacite-base-grey-600-600-9-5-mm/index.html",
+      "destination": "/products/dacite-base-grey-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/hornito-silver-seryy-450-450-8-mm-gost/index.html",
+      "destination": "/products/hornito-silver-seryy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/rif-bezhevyy-600-200-9-mm-standart/index.html",
+      "destination": "/products/rif-bezhevyy-600-200-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/savage-korichnevyy-svetlyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/savage-korichnevyy-svetlyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/chantilly-cemento-navy-450-450-8-mm-gost/index.html",
+      "destination": "/products/chantilly-cemento-navy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/silent-grey-600-600-9-5-mm/index.html",
+      "destination": "/products/silent-grey-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/terratsio-belyy-600-200-9-mm-standart/index.html",
+      "destination": "/products/terratsio-belyy-600-200-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/astaria-graphite-grafit-450-450-8-mm-gost/index.html",
+      "destination": "/products/astaria-graphite-grafit-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/tesina-pesochnyy-600-200-9-mm-standart/index.html",
+      "destination": "/products/tesina-pesochnyy-600-200-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/black-terrazzo-chernyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/black-terrazzo-chernyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matera-bezhevyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/matera-bezhevyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kolliano-bezhevyy-svetlyy-300-300-8-mm-1-sort/index.html",
+      "destination": "/products/kolliano-bezhevyy-svetlyy-300-300-8-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/vaiterek-bej-600-600-9-5-mm/index.html",
+      "destination": "/products/baiterek-beige-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/vaiterek-bej-600-600-9-5-mm/",
+      "destination": "/products/baiterek-beige-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/prozhetto-seryy-svetlyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/prozhetto-seryy-svetlyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/neo-seryy-400-400-7-mm-standart/index.html",
+      "destination": "/products/neo-seryy-400-400-7-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grani-taganaya-gtf400m-zimniy-belyy-1200-600-mm/index.html",
+      "destination": "/products/grani-taganaya-gtf400m-zimniy-belyy-1200-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/breccia-romano-belyy-450-450-8-mm-standart/index.html",
+      "destination": "/products/breccia-romano-belyy-450-450-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/terratsio-siniy-600-200-9-mm-standart/index.html",
+      "destination": "/products/terratsio-siniy-600-200-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grani-taganaya-gt047m-umbra-1200-600-mm/index.html",
+      "destination": "/products/grani-taganaya-gt047m-umbra-1200-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/mirabo-seryy-temnyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/mirabo-seryy-temnyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grani-taganaya-gtf427m-bezhevyy-1200-600-mm/index.html",
+      "destination": "/products/grani-taganaya-gtf427m-bezhevyy-1200-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/keramogranit-tekhnicheskiy-sol-perets-svetlo-seryy-matovaya-300-300-7-mm/index.html",
+      "destination": "/products/keramogranit-tekhnicheskiy-sol-perets-svetlo-seryy-matovaya-300-300-7-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grani-taganaya-gt202m-kristalno-molochnyy-600-600-mm/index.html",
+      "destination": "/products/grani-taganaya-gt202m-kristalno-molochnyy-600-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/rim-bezhevyy-rekt-600-600-10-mm-1-sort/index.html",
+      "destination": "/products/rim-bezhevyy-rekt-600-600-10-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/greys-belyy-600-200-9-mm-standart/index.html",
+      "destination": "/products/greys-belyy-600-200-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/narni-seryy-600-200-9-mm-standart/index.html",
+      "destination": "/products/narni-seryy-600-200-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/delux-beige-wall-02-reflenaya-600-250-9-mm/index.html",
+      "destination": "/products/delux-beige-wall-02-reflenaya-600-250-9-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/calacatta-grey-600-600-9-5-mm/index.html",
+      "destination": "/products/calacatta-grey-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/autunno-base-light-beige-600-600-9-5-mm/index.html",
+      "destination": "/products/autunno-base-light-beige-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/drim-belyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/drim-belyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/liya-bezhevyy-600-300-9-mm-standart/index.html",
+      "destination": "/products/liya-bezhevyy-600-300-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/layt-bezhevyy-600-200-9-mm-standart/index.html",
+      "destination": "/products/layt-bezhevyy-600-200-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kalakatta-serye-600-600-10-mm-gost/index.html",
+      "destination": "/products/kalakatta-serye-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nordland-bezhevyy-01-125-500-mm-standart/index.html",
+      "destination": "/products/nordland-bezhevyy-01-125-500-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/smouk-seryy-01-125-500-mm-standart/index.html",
+      "destination": "/products/smouk-seryy-01-125-500-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-belyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/raduga-belyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/vardi-bezhevyy-01-125-500-mm-standart/index.html",
+      "destination": "/products/vardi-bezhevyy-01-125-500-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/royal-noel-emperador-korichnevyy-600-300-9-mm-pk/index.html",
+      "destination": "/products/royal-noel-emperador-korichnevyy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/marble-line-dark-grey-seryy-temnyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/marble-line-dark-grey-seryy-temnyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/germes-koroichnevyy-400-250-8-mm-standart/index.html",
+      "destination": "/products/germes-korichnevyy-400-250-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/germes-koroichnevyy-400-250-8-mm-standart/",
+      "destination": "/products/germes-korichnevyy-400-250-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sheron-bezhevyy-600-300-9-mm-standart/index.html",
+      "destination": "/products/sheron-bezhevyy-600-300-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/magma-korichnevyy-temnyy-600-600-10-mm-standart/index.html",
+      "destination": "/products/magma-korichnevyy-temnyy-600-600-10-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/monogamma-seryy-600-200-9-mm-pk/index.html",
+      "destination": "/products/monogamma-seryy-600-200-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/pulpis-grey-600-600-9-5-mm/index.html",
+      "destination": "/products/pulpis-grey-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/gledis-bezhevyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/gledis-bezhevyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/khitrou-siniy-400-200-8-mm-standart/index.html",
+      "destination": "/products/khitrou-siniy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/praym-tsement-svetlo-seryy-600-300-9-mm-sortovaya/index.html",
+      "destination": "/products/praym-tsement-svetlo-seryy-600-300-9-mm-sortovaya/",
+      "permanent": true
+    },
+    {
+      "source": "/products/korolevskaya-doroga-chernyy-obreznoy-600-1200-9-mm-2-sort/index.html",
+      "destination": "/products/korolevskaya-doroga-chernyy-obreznoy-600-1200-9-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/monte-tiberio-seryy-svetlyy-obreznoy-600-1200-9-mm-2-sort/index.html",
+      "destination": "/products/monte-tiberio-seryy-svetlyy-obreznoy-600-1200-9-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/natura-white-ryzhie-prozhilki-600-600-9-5-mm/index.html",
+      "destination": "/products/natura-white-ryzhie-prozhilki-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kaleydoskop-belyy-200-200-mm-1-sort/index.html",
+      "destination": "/products/kaleydoskop-belyy-200-200-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/concrete-light-grey-600-600-9-5-mm/index.html",
+      "destination": "/products/concrete-light-grey-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/korolevskaya-doroga-seryy-svetlyy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/korolevskaya-doroga-seryy-svetlyy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/rivera-seryy-600-600-10-mm-gost/index.html",
+      "destination": "/products/rivera-seryy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grani-taganaya-gtf422m-rzhavchina-1200-600-mm/index.html",
+      "destination": "/products/grani-taganaya-gtf422m-rzhavchina-1200-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/madra-korichnevyy-600-300-9-mm-pk/index.html",
+      "destination": "/products/madra-korichnevyy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/germes-belyy-terratstso-02-400-400-8-mm-standart/index.html",
+      "destination": "/products/germes-belyy-terratstso-02-400-400-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/mono-smoke-seryy-600-300-9-mm-pk/index.html",
+      "destination": "/products/mono-smoke-seryy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhoys-biryuzovyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/dzhoys-biryuzovyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/korolevskaya-doroga-seryy-svetlyy-obreznoy-600-1200-9-mm-1-sort/index.html",
+      "destination": "/products/korolevskaya-doroga-seryy-svetlyy-obreznoy-600-1200-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/luksor-vud-korichnevyy-600-300-9-mm-pk/index.html",
+      "destination": "/products/luksor-vud-korichnevyy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhoys-siniy-500-250-9-mm-standart/index.html",
+      "destination": "/products/dzhoys-siniy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhoys-rozovyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/dzhoys-rozovyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/palette-skin-bezhevyy-600-300-9-mm-pk/index.html",
+      "destination": "/products/palette-skin-bezhevyy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/drim-goluboy-500-250-9-mm-standart/index.html",
+      "destination": "/products/drim-goluboy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/korolevskaya-doroga-korichnevyy-svetlyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/korolevskaya-doroga-korichnevyy-svetlyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhoys-biryuzovyy-500-250-9-mm-pk/index.html",
+      "destination": "/products/dzhoys-biryuzovyy-500-250-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/alcor-svetlyy-600-200-9-mm-pk/index.html",
+      "destination": "/products/alcor-svetlyy-600-200-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kids-zheltyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kids-zheltyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/odnotonnaya-belyy-matovaya-500-250-9-mm-standart/index.html",
+      "destination": "/products/odnotonnaya-belyy-matovaya-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kids-oranzhevyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kids-oranzhevyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-oranzhevyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/raduga-oranzhevyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sonata-seryy-450-450-8-mm-gost/index.html",
+      "destination": "/products/sonata-seryy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/daf-seryy-600-200-9-mm-optimum/index.html",
+      "destination": "/products/daf-seryy-600-200-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-fioletovyy-obreznoy-600-600-11-mm-2-sort/index.html",
+      "destination": "/products/raduga-fioletovyy-obreznoy-600-600-11-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grandwood-bezhevyy-450-450-8-mm-gost/index.html",
+      "destination": "/products/grandwood-bezhevyy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/antibs-bezhevyy-temnyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/antibs-bezhevyy-temnyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/saragosa-seryy-600-300-9-mm-optimum/index.html",
+      "destination": "/products/saragosa-seryy-600-300-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nordland-bezhevyy-03-125-500-mm-standart/index.html",
+      "destination": "/products/nordland-bezhevyy-03-125-500-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/sens-light-seryy-500-250-9-mm-optimum/index.html",
+      "destination": "/products/sens-light-seryy-500-250-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/matera-seryy-600-600-10-mm-gost/index.html",
+      "destination": "/products/matera-seryy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/fregat-bezhevyy-obreznoy-200-800-9-mm-1-sort/index.html",
+      "destination": "/products/fregat-bezhevyy-obreznoy-200-800-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/chips-white-600-600-9-5-mm/index.html",
+      "destination": "/products/chips-white-600-600-9-5-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/terratstso-seryy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/terratstso-seryy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kids-goluboy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kids-goluboy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/myunkhen-kamni-korichnevyy-330-330-8-mm-gost/index.html",
+      "destination": "/products/myunkhen-kamni-korichnevyy-330-330-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nord-seryy-400-200-8-mm-optimum/index.html",
+      "destination": "/products/nord-seryy-400-200-8-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kids-zelenyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kids-zelenyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kaleydoskop-bezhevyy-200-200-mm-1-sort/index.html",
+      "destination": "/products/kaleydoskop-bezhevyy-200-200-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/magma-seryy-svetlyy-600-600-10-mm-standart/index.html",
+      "destination": "/products/magma-seryy-svetlyy-600-600-10-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/senat-bezhevyy-obreznoy-400-400-8-mm-1-sort/index.html",
+      "destination": "/products/senat-bezhevyy-obreznoy-400-400-8-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nord-bezhevyy-400-200-8-mm-optimum/index.html",
+      "destination": "/products/nord-bezhevyy-400-200-8-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nord-temno-bezhevyy-400-200-8-mm-optimum/index.html",
+      "destination": "/products/nord-temno-bezhevyy-400-200-8-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/motivo-seryy-svetlyy-400-400-8-mm-1-sort/index.html",
+      "destination": "/products/motivo-seryy-svetlyy-400-400-8-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/korolevskaya-doroga-seryy-svetlyy-obreznoy-600-1200-9-mm-2-sort/index.html",
+      "destination": "/products/korolevskaya-doroga-seryy-svetlyy-obreznoy-600-1200-9-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/garmoniya-belyy-300-300-8-mm-2-sort/index.html",
+      "destination": "/products/garmoniya-belyy-300-300-8-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kids-seryy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kids-seryy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/paradise-white-belyy-500-250-9-mm-optimum/index.html",
+      "destination": "/products/paradise-white-belyy-500-250-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/magma-seryy-temnyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/magma-seryy-temnyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/senat-seryy-svetlyy-obreznoy-400-400-8-mm-1-sort/index.html",
+      "destination": "/products/senat-seryy-svetlyy-obreznoy-400-400-8-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/terratstso-seryy-600-600-9-mm-2-sort/index.html",
+      "destination": "/products/terratstso-seryy-600-600-9-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/odnotonnaya-belyy-matovaya-600-300-9-mm-sortovaya/index.html",
+      "destination": "/products/odnotonnaya-belyy-matovaya-600-300-9-mm-sortovaya/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-krasnyy-obreznoy-600-600-11-mm-1-sort/index.html",
+      "destination": "/products/raduga-krasnyy-obreznoy-600-600-11-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhoys-korichnevyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/dzhoys-korichnevyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/keramogranit-tekhnicheskiy-sol-perets-seryy-matovaya-300-300-8-mm/index.html",
+      "destination": "/products/keramogranit-tekhnicheskiy-sol-perets-seryy-matovaya-300-300-8-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nord-bezhevyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/nord-bezhevyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/magma-korichnevyy-svetlyy-600-600-10-mm-gost/index.html",
+      "destination": "/products/magma-korichnevyy-svetlyy-600-600-10-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/terratstso-seryy-svetlyy-600-600-9-mm-2-sort/index.html",
+      "destination": "/products/terratstso-seryy-svetlyy-600-600-9-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/slim-seryy-600-300-9-mm-pk/index.html",
+      "destination": "/products/slim-seryy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/saragosa-korichnevyy-600-300-9-mm-optimum/index.html",
+      "destination": "/products/saragosa-korichnevyy-600-300-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-belyy-obreznoy-600-1200-11-mm-3-sort/index.html",
+      "destination": "/products/raduga-belyy-obreznoy-600-1200-11-mm-3-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-belyy-obreznoy-600-600-9-mm-2-sort/index.html",
+      "destination": "/products/raduga-belyy-obreznoy-600-600-9-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nord-seryy-400-200-8-mm-standart/index.html",
+      "destination": "/products/nord-seryy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/interni-grey-seryy-500-250-9-mm-optimum/index.html",
+      "destination": "/products/interni-grey-seryy-500-250-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/fyuzhen-seryy-400-200-8-mm-standart/index.html",
+      "destination": "/products/fyuzhen-seryy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/s-white-belyy-600-300-9-mm-optimum/index.html",
+      "destination": "/products/s-white-belyy-600-300-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/parfyum-bezhevyy-400-250-8-mm-standart/index.html",
+      "destination": "/products/parfyum-bezhevyy-400-250-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/monokolor-belyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/monokolor-belyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/saragosa-bezhevyy-600-300-9-mm-optimum/index.html",
+      "destination": "/products/saragosa-bezhevyy-600-300-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/monte-tiberio-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/monte-tiberio-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grandas-rekt-600-600-10-mm-2-sort/index.html",
+      "destination": "/products/grandas-rekt-600-600-10-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/v60324-600-600-mm/index.html",
+      "destination": "/products/b60324-600-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/v60324-600-600-mm/",
+      "destination": "/products/b60324-600-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/nord-belyy-400-400-8-mm-3-sort/index.html",
+      "destination": "/products/nord-belyy-400-400-8-mm-3-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/fyuzhen-belyy-400-200-8-mm-optimum/index.html",
+      "destination": "/products/fyuzhen-belyy-400-200-8-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/saragosa-belyy-400-200-8-mm-pk/index.html",
+      "destination": "/products/saragosa-belyy-400-200-8-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/elegiya-pesochnyy-385-385-8-5-mm-standart/index.html",
+      "destination": "/products/elegiya-pesochnyy-385-385-8-5-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/pro-matriks-seryy-svetlyy-matovyy-obreznoy-300-600-9-mm/index.html",
+      "destination": "/products/pro-matriks-seryy-svetlyy-matovyy-obreznoy-300-600-9-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/oslo-siniy-500-250-9-mm-standart/index.html",
+      "destination": "/products/oslo-siniy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/emiliya-bezhevyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/emiliya-bezhevyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kids-krasnyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kids-krasnyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/monokhromo-belyy-600-300-9-mm-pk/index.html",
+      "destination": "/products/monokhromo-belyy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/saboya-seryy-600-300-9-mm-standart/index.html",
+      "destination": "/products/saboya-seryy-600-300-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/mezzo-seryy-450-450-8-mm-gost/index.html",
+      "destination": "/products/mezzo-seryy-450-450-8-mm-gost/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-zheltyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/raduga-zheltyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/rocks-light-grey-seryy-svetlyy-600-600-10-mm-standart/index.html",
+      "destination": "/products/rocks-light-grey-seryy-svetlyy-600-600-10-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-bezhevyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/raduga-bezhevyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kaleydoskop-persikovyy-200-200-mm-1-sort/index.html",
+      "destination": "/products/kaleydoskop-persikovyy-200-200-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/atlantic-light-belyy-500-250-9-mm-optimum/index.html",
+      "destination": "/products/atlantic-light-belyy-500-250-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/v60336-600-600-mm/index.html",
+      "destination": "/products/v60336-600-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/pro-matriks-bezhevyy-obreznoy-600-150-11-mm-1-sort/index.html",
+      "destination": "/products/pro-matriks-bezhevyy-obreznoy-600-150-11-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/fyuzhen-belyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/fyuzhen-belyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/keramogranit-tekhnicheskiy-tekhno-2-seryy-matovaya-300-300-7-mm/index.html",
+      "destination": "/products/keramogranit-tekhnicheskiy-tekhno-2-seryy-matovaya-300-300-7-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/keramogranit-tekhnicheskiy-tekhno-2-seryy-matovaya-stupen-300-300-7-mm/index.html",
+      "destination": "/products/keramogranit-tekhnicheskiy-tekhno-2-seryy-matovaya-stupen-300-300-7-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/artdeco-white-belyy-500-250-9-mm-optimum/index.html",
+      "destination": "/products/artdeco-white-belyy-500-250-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-purpurno-krasnyy-obreznoy-600-600-11-mm-1-sort/index.html",
+      "destination": "/products/raduga-purpurno-krasnyy-obreznoy-600-600-11-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/keramogranit-tekhnicheskiy-utolshchennyy-sol-perets-seryy-matovaya-300-300-12-mm/index.html",
+      "destination": "/products/keramogranit-tekhnicheskiy-utolshchennyy-sol-perets-seryy-matovaya-300-300-12-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/khitrou-terrakotovyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/khitrou-terrakotovyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-zelenyy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/raduga-zelenyy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kasl-seryy-500-250-9-mm-optimum/index.html",
+      "destination": "/products/kasl-seryy-500-250-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/saragosa-seryy-600-300-9-mm-pk/index.html",
+      "destination": "/products/saragosa-seryy-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhoys-siniy-500-250-9-mm-pk/index.html",
+      "destination": "/products/dzhoys-siniy-500-250-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/urban-seryy-svetlyy-300-300-8-mm-1-sort/index.html",
+      "destination": "/products/urban-seryy-svetlyy-300-300-8-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/karen-seryy-400-200-8-mm-standart/index.html",
+      "destination": "/products/karen-seryy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/rossi-seryy-385-385-8-5-mm-standart/index.html",
+      "destination": "/products/rossi-seryy-385-385-8-5-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raf-relef-zelenyy-600-300-9-mm-sortovaya/index.html",
+      "destination": "/products/raf-relef-zelenyy-600-300-9-mm-sortovaya/",
+      "permanent": true
+    },
+    {
+      "source": "/products/stoun-seryy-600-300-9-mm-optimum/index.html",
+      "destination": "/products/stoun-seryy-600-300-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kurazh-2-krasnyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/kurazh-2-krasnyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/frida-grey-600-300-9-mm-pk/index.html",
+      "destination": "/products/frida-grey-600-300-9-mm-pk/",
+      "permanent": true
+    },
+    {
+      "source": "/products/hugo-seryy-600-300-9-mm-standart/index.html",
+      "destination": "/products/hugo-seryy-600-300-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-siniy-obreznoy-600-600-9-mm-1-sort/index.html",
+      "destination": "/products/raduga-siniy-obreznoy-600-600-9-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/raduga-bezhevyy-obreznoy-600-600-11-mm-1-sort/index.html",
+      "destination": "/products/raduga-bezhevyy-obreznoy-600-600-11-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/kolliano-seryy-300-300-8-mm-1-sort/index.html",
+      "destination": "/products/kolliano-seryy-300-300-8-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/venice-crema-bezhevyy-600-300-9-mm-optimum/index.html",
+      "destination": "/products/venice-crema-bezhevyy-600-300-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/fondamenta-seryy-temnyy-600-600-11-mm-1-sort/index.html",
+      "destination": "/products/fondamenta-seryy-temnyy-600-600-11-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/drim-lilovyy-500-250-9-mm-standart/index.html",
+      "destination": "/products/drim-lilovyy-500-250-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/dzhenni-bezhevyy-400-200-8-mm-standart/index.html",
+      "destination": "/products/dzhenni-bezhevyy-400-200-8-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/liya-bezhevyy-600-300-9-mm-optimum/index.html",
+      "destination": "/products/liya-bezhevyy-600-300-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/beys-kalakatta-grey-600-300-9-mm-standart/index.html",
+      "destination": "/products/beys-kalakatta-grey-600-300-9-mm-standart/",
+      "permanent": true
+    },
+    {
+      "source": "/products/narni-seryy-600-200-9-mm-optimum/index.html",
+      "destination": "/products/narni-seryy-600-200-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/products/grani-taganaya-gt061m-yantar-1200-600-mm/index.html",
+      "destination": "/products/grani-taganaya-gt061m-yantar-1200-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/korolevskaya-doroga-korichnevyy-svetlyy-obreznoy-600-600-9-mm-2-sort/index.html",
+      "destination": "/products/korolevskaya-doroga-korichnevyy-svetlyy-obreznoy-600-600-9-mm-2-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/10-gcr-0016-tekhno-600-600-10-mm-1-sort/index.html",
+      "destination": "/products/10-gcr-0016-tekhno-600-600-10-mm-1-sort/",
+      "permanent": true
+    },
+    {
+      "source": "/products/siata-olivkovyy-600-300-9-mm-sortovaya/index.html",
+      "destination": "/products/siata-olivkovyy-600-300-9-mm-sortovaya/",
+      "permanent": true
+    },
+    {
+      "source": "/products/v60332-600-600-mm/index.html",
+      "destination": "/products/v60332-600-600-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/delux-beige-wall-01-gladkaya-600-250-9-mm/index.html",
+      "destination": "/products/delux-beige-wall-01-gladkaya-600-250-9-mm/",
+      "permanent": true
+    },
+    {
+      "source": "/products/fresh-belyy-500-250-9-mm-optimum/index.html",
+      "destination": "/products/fresh-belyy-500-250-9-mm-optimum/",
+      "permanent": true
+    },
+    {
+      "source": "/catalog/keramicheskaya-plitka-spb/index.html",
+      "destination": "/catalog/keramicheskaya-plitka-spb/",
+      "permanent": true
+    },
+    {
+      "source": "/catalog/keramogranit-spb/index.html",
+      "destination": "/catalog/keramogranit-spb/",
+      "permanent": true
+    }
+  ]
+}

@@ -6,3 +6,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://tf-ceramica.vercel.app/sitemap.xml
