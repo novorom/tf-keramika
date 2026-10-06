@@ -554,6 +554,7 @@ function openCb(it,q){
  $('#cb').showModal();setTimeout(()=>$('#cbphone').focus(),50);
 }
 ['hcall','ccall','sticky-call'].forEach(i=>$('#'+i).onclick=()=>openCb(null,0));
+if(location.hash==='#callback') openCb(null,0);
 $('#dcall').onclick=()=>{const q=parseFloat(($('#dqty').value||'').replace(',','.'))||0;$('#dlg').close();openCb(cur,q)};
 $('#cbx').onclick=()=>$('#cb').close();
 $('#cb').onclick=e=>{if(e.target===$('#cb'))$('#cb').close()};
