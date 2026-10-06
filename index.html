@@ -135,7 +135,7 @@ table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;
 <li class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg><span>Самовывоз и доставка</span></li>
 <li class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12m8.48 8.48 2.12 2.12m0-12.72-2.12 2.12m-8.48 8.48-2.12 2.12"/><circle cx="12" cy="12" r="5"/></svg><span>Расчёт количества бесплатно</span></li>
 </ul>
-<div class="btns"><a class="btn primary" href="#prices">Выбрать товар</a><button class="btn" id="hero-call" type="button">Узнать цену и наличие</button><a class="btn alt" id="htg" href="#" target="_blank" rel="noopener">Telegram</a><a class="link-contact" href="mailto:novorom@mail.ru">Написать на почту</a></div>
+<div class="btns"><a class="btn primary" href="#prices">Выбрать товар</a><a class="btn alt" id="htg" href="#" target="_blank" rel="noopener">Telegram</a><a class="link-contact" href="mailto:novorom@mail.ru">Написать на почту</a></div>
 <nav class="category-nav" aria-label="Выберите тип товара">
 <a class="category-card" href="catalog/keramicheskaya-plitka-spb/"><span><strong>Керамическая плитка</strong><small><span id="tile-count">89 позиций</span> · посмотреть каталог →</small></span><img src="img/photos/002.jpg" alt="Образец керамической плитки" loading="lazy" decoding="async"></a>
 <a class="category-card" href="catalog/keramogranit-spb/"><span><strong>Керамогранит</strong><small><span id="gres-count">102 позиции</span> · посмотреть каталог →</small></span><img src="img/photos/007.jpg" alt="Образец керамогранита" loading="lazy" decoding="async"></a>
@@ -538,7 +538,7 @@ function openCb(it,q){
  $('#cbst').textContent='';$('#cbform').hidden=false;$('#cbok').hidden=true;
  $('#cb').showModal();setTimeout(()=>$('#cbphone').focus(),50);
 }
-['hcall','ccall','hero-call','sticky-call'].forEach(i=>$('#'+i).onclick=()=>openCb(null,0));
+['hcall','ccall','sticky-call'].forEach(i=>$('#'+i).onclick=()=>openCb(null,0));
 $('#dcall').onclick=()=>{const q=parseFloat(($('#dqty').value||'').replace(',','.'))||0;$('#dlg').close();openCb(cur,q)};
 $('#cbx').onclick=()=>$('#cb').close();
 $('#cb').onclick=e=>{if(e.target===$('#cb'))$('#cb').close()};
