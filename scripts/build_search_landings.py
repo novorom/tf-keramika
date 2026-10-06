@@ -8,7 +8,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = 'https://tf-ceramica.vercel.app'
+BASE = 'https://tfkeramika.ru'
 TODAY = '2026-10-05'
 source = (ROOT / 'index.html').read_text()
 items = json.loads(re.search(r'const ITEMS=(\[.*?\]);\n', source).group(1))

@@ -3,7 +3,7 @@ from urllib.parse import quote
 from pathlib import Path
 
 root = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]
-SITE_URL = 'https://tf-ceramica.vercel.app'
+SITE_URL = 'https://tfkeramika.ru'
 index_path = root / 'index.html'
 s = index_path.read_text()
 m = re.search(r'const ITEMS=(\[.*?\]);\n', s)
