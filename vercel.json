@@ -7,6 +7,17 @@
       "has": [
         {
           "type": "host",
+          "value": "tf-ceramica.vercel.app"
+        }
+      ],
+      "destination": "https://tfkeramika.ru/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
           "value": "www.tfkeramika.ru"
         }
       ],
