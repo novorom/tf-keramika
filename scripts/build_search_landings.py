@@ -177,7 +177,7 @@ for match in scripts:
         continue
     if data.get('@type') in ('Store','LocalBusiness'):
         store_scripts.append(match)
-store = {'@context':'https://schema.org','@type':'Store','@id':f'{BASE}/#store','name':'ТФ Керамика','url':f'{BASE}/','email':'novorom@mail.ru','description':'Плитка и керамогранит для строителей в Санкт-Петербурге и Ленинградской области. Склад в посёлке Войскорово, самовывоз и доставка по согласованию.','address':{'@type':'PostalAddress','streetAddress':'14В','addressLocality':'посёлок Войскорово','addressRegion':'Ленинградская область','addressCountry':'RU'},'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':'09:00','closes':'18:00'}]}
+store = {'@context':'https://schema.org','@type':'Store','@id':f'{BASE}/#store','name':'ТФ Керамика','url':f'{BASE}/','email':'novorom@mail.ru','description':'Плитка и керамогранит для строителей в Санкт-Петербурге и Ленинградской области. Склад в посёлке Войскорово. Самовывоз бесплатный; доставка по Санкт-Петербургу и Ленинградской области рассчитывается по весу и расстоянию.','address':{'@type':'PostalAddress','streetAddress':'14В','addressLocality':'посёлок Войскорово','addressRegion':'Ленинградская область','addressCountry':'RU'},'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':'09:00','closes':'18:00'}],'hasMerchantReturnPolicy':{'@type':'MerchantReturnPolicy','@id':f'{BASE}/#return-policy','applicableCountry':'RU','returnPolicyCategory':'https://schema.org/MerchantReturnFiniteReturnWindow','merchantReturnDays':14,'description':'Возврат товара возможен в течение 14 дней при сохранении товарного вида. Подробные условия уточняйте у менеджера.'},'hasShippingService':[{'@type':'ShippingService','@id':f'{BASE}/#pickup-service','name':'Бесплатный самовывоз','description':'Самовывоз со склада в посёлке Войскорово бесплатный.','fulfillmentType':'https://schema.org/FulfillmentTypeCollectionPoint','shippingConditions':[{'@type':'ShippingConditions','shippingRate':{'@type':'MonetaryAmount','value':0,'currency':'RUB'}}]},{'@type':'ShippingService','@id':f'{BASE}/#delivery-service','name':'Доставка по Санкт-Петербургу и Ленинградской области','description':'Стоимость доставки рассчитывается индивидуально в зависимости от веса заказа и расстояния.','fulfillmentType':'https://schema.org/FulfillmentTypeDelivery','shippingConditions':[{'@type':'ShippingConditions','shippingDestination':[{'@type':'DefinedRegion','addressCountry':'RU','addressRegion':'Санкт-Петербург'},{'@type':'DefinedRegion','addressCountry':'RU','addressRegion':'Ленинградская область'}],'description':'Стоимость рассчитывается индивидуально в зависимости от веса заказа и расстояния.'}]}]}
 if store_scripts:
     first = store_scripts[0]
     source = source[:first.start()] + '<script type="application/ld+json">' + json.dumps(store,ensure_ascii=False,separators=(',',':')) + '</script>' + source[first.end():]
@@ -199,6 +199,9 @@ for _,path,_ in brand_pages + format_pages + color_pages:
     url = f'{BASE}/{path}'
     if url not in existing:
         sitemap = sitemap.replace('</urlset>', f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod></url>\n</urlset>')
+policy_url = f'{BASE}/delivery-and-returns/'
+if policy_url not in existing:
+    sitemap = sitemap.replace('</urlset>', f'  <url><loc>{policy_url}</loc></url>\n</urlset>')
 sitemap_path.write_text(sitemap)
 
 # Ensure explicit clean canonical routes are served directly from static folders.

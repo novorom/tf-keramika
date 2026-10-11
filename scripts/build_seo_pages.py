@@ -81,7 +81,7 @@ for i,it in enumerate(items):
     if brand: product_schema['brand'] = {'@type':'Brand','name':brand}
     if it.get('origin'): product_schema['countryOfOrigin'] = it['origin']
     if it.get('p'):
-        product_schema['offers'] = {'@type':'Offer','url':canonical_url,'price':str(it['p']),'priceCurrency':'RUB','availability':'https://schema.org/InStock'}
+        product_schema['offers'] = {'@type':'Offer','url':canonical_url,'price':str(it['p']),'priceCurrency':'RUB','availability':'https://schema.org/InStock','hasMerchantReturnPolicy':{'@id':SITE_URL+'/#return-policy'},'shippingDetails':[{'@type':'OfferShippingDetails','hasShippingService':{'@id':SITE_URL+'/#pickup-service'}},{'@type':'OfferShippingDetails','hasShippingService':{'@id':SITE_URL+'/#delivery-service'}}]}
     if it.get('a'): product_schema['sku'] = it['a']
     if photo: product_schema['image'] = SITE_URL + '/' + photo.lstrip('/')
     schema = json.dumps(product_schema, ensure_ascii=False, separators=(',',':')).replace('</','<\\/')
