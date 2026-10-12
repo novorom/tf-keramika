@@ -24,6 +24,12 @@ def image_path(it):
     if image and (root/image).is_file(): return image
     return photo or image or ''
 def fmt_num(n): return f'{n:,}'.replace(',', '\u00a0')
+def stock_label(n):
+    n = int(n)
+    if n > 1000: return 'Очень много'
+    if n > 500: return 'Много'
+    if n > 100: return 'Достаточное количество'
+    return 'Есть в наличии'
 def relative_asset(path): return '../../' + path.lstrip('/')
 def price_text(it): return f"{fmt_num(it['p'])} ₽/м² с НДС" if it.get('p') else 'Цена по запросу'
 
@@ -58,7 +64,7 @@ for i,it in enumerate(items):
         title = title.replace('Купить ', '', 1)
     facts = [name, brand, size]
     if it.get('g'): facts.append(it['g'])
-    desc = f"{name}" + (f" — {brand}" if brand else "") + f", {size}" + (f", {it['g']}" if it.get('g') else '') + (f". Страна производства: {it['origin']}." if it.get('origin') else '') + (f" Артикул {it['a']}." if it.get('a') else '') + f" В наличии {fmt_num(it['q'])} м². {price_text(it)}. Склад в Войскорово, доставка по Санкт-Петербургу и области."
+    desc = f"{name}" + (f" — {brand}" if brand else "") + f", {size}" + (f", {it['g']}" if it.get('g') else '') + (f". Страна производства: {it['origin']}." if it.get('origin') else '') + (f" Артикул {it['a']}." if it.get('a') else '') + f" {stock_label(it['q'])}. {price_text(it)}. Склад в Войскорово, доставка по Санкт-Петербургу и области."
     photo = image_path(it)
     if photo:
         fallback=it.get('img') if photo != it.get('img') else ''
@@ -114,7 +120,7 @@ for i,it in enumerate(items):
 </style></head><body>
 <header><div class="wrap"><a class="brand" href="../../index.html">ТФ Керамика</a></div></header>
 <main class="wrap"><nav class="crumb" aria-label="Навигационная цепочка"><a href="../../index.html">Все товары</a> › <a href="../../catalog/{category_slug}/index.html">{esc('Керамическая плитка' if it['t']=='tile' else 'Керамогранит')}</a> › {esc(name)}</nav>
-<h1>{esc(name)}</h1><div class="grid"><div>{img}<a class="btn product-email" href="{esc(email_href)}">Написать заявку на электронную почту</a></div><section class="panel">{f'<p><strong>{esc(brand)}</strong></p>' if brand else ''}<dl class="facts"><dt>Размер</dt><dd>{esc(size)}</dd>{grade}{article}{'<dt>Страна производства</dt><dd>'+esc(it['origin'])+'</dd>' if it.get('origin') else ''}<dt>Наличие</dt><dd class="stock">{fmt_num(it['q'])} м²</dd>{price}</dl>
+<h1>{esc(name)}</h1><div class="grid"><div>{img}<a class="btn product-email" href="{esc(email_href)}">Написать заявку на электронную почту</a></div><section class="panel">{f'<p><strong>{esc(brand)}</strong></p>' if brand else ''}<dl class="facts"><dt>Размер</dt><dd>{esc(size)}</dd>{grade}{article}{'<dt>Страна производства</dt><dd>'+esc(it['origin'])+'</dd>' if it.get('origin') else ''}<dt>Наличие</dt><dd class="stock">{stock_label(it['q'])}</dd>{price}</dl>
 <p class="note">Остаток указан по данным на 1 октября 2026 года. Перед заказом уточните наличие и цену у менеджера.</p><button class="btn" id="order-call" type="button" data-item="{esc(callback_item)}" data-request="{esc(email_body)}">Заказать звонок</button><a class="btn" href="{esc(telegram_href)}" target="_blank" rel="noopener">Написать в Telegram</a>
 <p>Поможем рассчитать количество плитки для объекта, проверить остаток и согласовать самовывоз или доставку в Санкт-Петербурге и Ленинградской области.</p></section></div>
 <section><h2>Другие товары</h2><ul>{related_html}</ul></section>
@@ -153,7 +159,7 @@ for kind,slug,title,h1,intro in categories:
         article=f'<span>Артикул: {esc(it["a"])}</span>' if it.get('a') else ''
         price=price_text(it).replace(' с НДС','')
         price_class='price' if it.get('p') else 'price ask'
-        cards.append(f'<a class="item" href="../../{esc(it["url"])}"><span class="thumb">{image}</span><span class="info"><strong>{esc(it["n"])}</strong><span>{esc(details)}</span><span>В наличии {fmt_num(it["q"])} м²</span>{article}</span><span class="{price_class}">{esc(price)}</span></a>')
+        cards.append(f'<a class="item" href="../../{esc(it["url"])}"><span class="thumb">{image}</span><span class="info"><strong>{esc(it["n"])}</strong><span>{esc(details)}</span><span>{stock_label(it["q"])}</span>{article}</span><span class="{price_class}">{esc(price)}</span></a>')
     cat_page=f'''<!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title><meta name="description" content="{esc(intro)}"><link rel="canonical" href="{esc(category_url)}"><meta name="robots" content="index,follow,max-image-preview:large">
@@ -172,6 +178,8 @@ for kind,slug,title,h1,intro in categories:
 # Keep product URLs embedded in the data for JS-created cards.
 s = re.sub(r'const ITEMS=(\[.*?\]);\n', 'const ITEMS='+json.dumps(items,ensure_ascii=False,separators=(',',':'))+';\n', s, count=1)
 s = s.replace('placeholder="Название или размер" aria-label="Поиск по названию или размеру"','placeholder="Название, размер или артикул" aria-label="Поиск по названию, размеру или артикулу"')
+s = s.replace("const fmt=n=>n.toLocaleString('ru-RU');", "const fmt=n=>n.toLocaleString('ru-RU');\nconst stockLabel=n=>n>1000?'Очень много':n>500?'Много':n>100?'Достаточное количество':'Есть в наличии';")
+s = s.replace("""<div class="stock-badge">В наличии '+fmt(it.q)+' м²</div>""", """<div class="stock-badge">'+stockLabel(it.q)+'</div>""")
 s = re.sub(r'(?m)^\.row\{display:grid;grid-template-columns:64px 1fr auto;(?:text-decoration:none;)+', '.row{display:grid;grid-template-columns:76px minmax(0,1fr) auto;text-decoration:none;', s)
 s = s.replace("'<button class=\"row\" data-i=\"'+i+'\">", "'<a class=\"row\" href=\"'+it.url+'\" data-i=\"'+i+'\">")
 s = s.replace("</button>').join(''", "</a>').join(''")
@@ -187,7 +195,7 @@ def card(it,i):
     price_html=f'{fmt_num(it["p"])} <small>₽/м²</small>' if it.get('p') else 'Цена по запросу'
     sub=', '.join(x for x in (it['s'],it['b'],('производство '+it['origin']) if it.get('origin') else '',it.get('g')) if x)
     article=f'<div class="sub">Артикул: {esc(it["a"])}</div>' if it.get('a') else ''
-    return f'<a class="row" data-i="{i}" href="{esc(it["url"])}">{sw}<div><div class="nm">{esc(it["n"])}</div><div class="sub">{esc(sub)}</div><div class="sub">В наличии {fmt_num(it["q"])} м²</div>{article}</div><div class="price{"" if it.get("p") else " ask"}">{price_html}</div></a>'
+    return f'<a class="row" data-i="{i}" href="{esc(it["url"])}">{sw}<div><div class="nm">{esc(it["n"])}</div><div class="sub">{esc(sub)}</div><div class="stock-badge">{stock_label(it["q"])}</div>{article}</div><div class="price{"" if it.get("p") else " ask"}">{price_html}</div></a>'
 static='\n'.join(card(it,i) for i,it in enumerate(items))
 s=re.sub(r'(<div class="list" id="list">).*?(</div>\s*<p style="text-align:center">)',lambda m:m.group(1)+static+m.group(2),s,count=1,flags=re.S)
 s=s.replace('Найдено: 192 позиции','Найдено: 191 позиция')
