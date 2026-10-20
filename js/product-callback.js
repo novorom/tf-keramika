@@ -47,8 +47,8 @@
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: accessKey,
-          subject: 'Заказ звонка: ТФ Керамика',
-          from_name: 'Сайт ТФ Керамика',
+          subject: 'Заказ звонка: Илтима',
+          from_name: 'Сайт Илтима',
           name: customer || 'Не указано',
           phone: number,
           message
