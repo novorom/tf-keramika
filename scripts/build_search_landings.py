@@ -203,9 +203,22 @@ for _,path,_ in brand_pages + format_pages + color_pages:
     url = f'{BASE}/{path}'
     if url not in existing:
         sitemap = sitemap.replace('</urlset>', f'  <url><loc>{url}</loc><lastmod>{TODAY}</lastmod></url>\n</urlset>')
+        existing.add(url)
 policy_url = f'{BASE}/delivery-and-returns/'
 if policy_url not in existing:
     sitemap = sitemap.replace('</urlset>', f'  <url><loc>{policy_url}</loc></url>\n</urlset>')
+    existing.add(policy_url)
+# Keep every indexable static page with a canonical URL discoverable in the sitemap,
+# including pages that are maintained outside this generator (for example, country pages).
+for page_path in ROOT.rglob('index.html'):
+    page = page_path.read_text(errors='ignore')
+    match = re.search(r'<link rel="canonical" href="([^"]+)"', page)
+    if not match:
+        continue
+    url = match.group(1)
+    if url not in existing:
+        sitemap = sitemap.replace('</urlset>', f'  <url><loc>{html.escape(url)}</loc><lastmod>{TODAY}</lastmod></url>\n</urlset>')
+        existing.add(url)
 sitemap_path.write_text(sitemap)
 
 # Ensure explicit clean canonical routes are served directly from static folders.
