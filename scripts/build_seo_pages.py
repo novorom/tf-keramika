@@ -3,7 +3,7 @@ from urllib.parse import quote
 from pathlib import Path
 
 root = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]
-SITE_URL = 'https://tfkeramika.ru'
+SITE_URL = 'https://iltima.ru'
 index_path = root / 'index.html'
 s = index_path.read_text()
 m = re.search(r'const ITEMS=(\[.*?\]);\n', s)
@@ -83,14 +83,16 @@ for i,it in enumerate(items):
     telegram_href = 'https://t.me/flyroman?text=' + quote(email_body, safe='')
     category_slug = 'keramicheskaya-plitka-spb' if it['t'] == 'tile' else 'keramogranit-spb'
     canonical_url = SITE_URL + '/' + url.lstrip('/')
-    product_schema = {'@context':'https://schema.org','@type':'Product','name':name,'description':desc,'url':canonical_url}
-    if brand: product_schema['brand'] = {'@type':'Brand','name':brand}
-    if it.get('origin'): product_schema['countryOfOrigin'] = it['origin']
+    product_schema_tag = ''
     if it.get('p'):
+        product_schema = {'@context':'https://schema.org','@type':'Product','name':name,'description':desc,'url':canonical_url}
+        if brand: product_schema['brand'] = {'@type':'Brand','name':brand}
+        if it.get('origin'): product_schema['countryOfOrigin'] = it['origin']
         product_schema['offers'] = {'@type':'Offer','url':canonical_url,'price':str(it['p']),'priceCurrency':'RUB','availability':'https://schema.org/InStock','hasMerchantReturnPolicy':{'@id':SITE_URL+'/#return-policy'},'shippingDetails':[{'@type':'OfferShippingDetails','hasShippingService':{'@id':SITE_URL+'/#pickup-service'}},{'@type':'OfferShippingDetails','hasShippingService':{'@id':SITE_URL+'/#delivery-service'}}]}
-    if it.get('a'): product_schema['sku'] = it['a']
-    if photo: product_schema['image'] = SITE_URL + '/' + photo.lstrip('/')
-    schema = json.dumps(product_schema, ensure_ascii=False, separators=(',',':')).replace('</','<\\/')
+        if it.get('a'): product_schema['sku'] = it['a']
+        if photo: product_schema['image'] = SITE_URL + '/' + photo.lstrip('/')
+        schema = json.dumps(product_schema, ensure_ascii=False, separators=(',',':')).replace('</','<\\/')
+        product_schema_tag = '<script type="application/ld+json">' + schema + '</script>'
     breadcrumb_schema = {'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[
         {'@type':'ListItem','position':1,'name':'Главная','item':SITE_URL+'/'},
         {'@type':'ListItem','position':2,'name':'Керамическая плитка' if it['t']=='tile' else 'Керамогранит','item':SITE_URL+'/catalog/'+('keramicheskaya-plitka-spb' if it['t']=='tile' else 'keramogranit-spb')+'/'},
@@ -113,7 +115,7 @@ for i,it in enumerate(items):
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{esc(canonical_url)}">
 <meta property="og:type" content="product"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Илтима"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{f'<meta property="og:image" content="{esc(SITE_URL + "/" + photo.lstrip("/"))}">' if photo else ''}
-<script type="application/ld+json">{schema}</script><script type="application/ld+json">{breadcrumb_json}</script>
+{product_schema_tag}<script type="application/ld+json">{breadcrumb_json}</script>
 <style>
 :root{{--bg:#e9e8e4;--card:#f6f5f2;--ink:#1f2429;--mut:#5d646b;--line:#c6c5be;--tag:#f4c400}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}}.wrap{{max-width:920px;margin:auto;padding:0 18px}}header{{border-bottom:1px solid var(--line)}}header .wrap{{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}}.brand{{font-weight:800;font-size:1.2rem;text-decoration:none;color:var(--ink)}}a{{color:#174e75}}.crumb{{font-size:.9rem;color:var(--mut);margin:22px 0}}main{{padding-bottom:42px}}h1,h2{{font-family:"Arial Narrow",Arial,sans-serif;line-height:1.15}}h1{{font-size:clamp(1.8rem,5vw,2.8rem);margin:.3em 0}}h2{{font-size:1.4rem}}.grid{{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.9fr);gap:28px;align-items:start}}.product-photo,.no-photo{{width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid var(--line);border-radius:10px;background:var(--card)}}.no-photo{{display:grid;place-items:center;color:var(--mut);text-align:center;padding:20px}}.panel{{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}}.facts{{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;margin:16px 0 22px}}.facts dt{{color:var(--mut)}}.facts dd{{margin:0;font-weight:650}}.btn{{display:inline-block;padding:11px 18px;background:#1f2429;border-radius:6px;color:#fff;text-decoration:none;font-weight:700;margin:4px 8px 4px 0}}button.btn{{border:0;cursor:pointer;font:inherit}}.product-email{{display:block;text-align:center;margin:12px 0 0}}.stock{{color:#375f36}}.note{{color:var(--mut);font-size:.9rem}}dialog{{border:0;border-radius:12px;padding:0;max-width:440px;width:calc(100% - 24px);background:var(--card);color:var(--ink)}}dialog::backdrop{{background:rgba(20,24,28,.6)}}.dbody{{padding:18px 20px 20px}}.dbody h2{{margin:0 0 4px;font-size:1.3rem;line-height:1.2}}.x{{position:absolute;right:10px;top:10px;width:40px;height:40px;border:0;border-radius:50%;background:var(--card);font-size:1.4rem;cursor:pointer}}.f{{display:grid;gap:10px}}.qty{{display:block;margin:8px 0 0;font-weight:600}}.qty input{{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1.5px solid var(--line);border-radius:6px;background:#fff;font-size:1rem;color:var(--ink)}}.hint{{color:var(--mut);font-size:.85rem;margin:8px 0 0}}#callback-status{{min-height:1.3em;color:#9b1c1c}}[hidden]{{display:none!important}}footer{{padding:22px 0 36px;color:var(--mut);font-size:.9rem;border-top:1px solid var(--line)}}@media(max-width:680px){{.grid{{grid-template-columns:1fr}}}}

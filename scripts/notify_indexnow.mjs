@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 
-const host = 'tfkeramika.ru';
+const host = 'iltima.ru';
 const base = `https://${host}`;
 const key = fs.readFileSync(new URL('../indexnow-key.txt', import.meta.url), 'utf8').trim();
 const changed = fs.readFileSync(0, 'utf8').split(/\r?\n/).filter(Boolean);

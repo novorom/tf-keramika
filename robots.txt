@@ -7,4 +7,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://tfkeramika.ru/sitemap.xml
+Sitemap: https://iltima.ru/sitemap.xml

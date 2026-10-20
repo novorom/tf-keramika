@@ -3,17 +3,6 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.tfkeramika.ru"
-        }
-      ],
-      "destination": "https://tfkeramika.ru/:path*",
-      "permanent": true
-    },
-    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true
