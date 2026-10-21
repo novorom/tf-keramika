@@ -459,7 +459,6 @@ const COL=[['бел','#eeeeea'],['беж','#d9c7a5'],['песоч','#dccbb0'],['
 const col=n=>{n=n.toLowerCase();for(const[k,v]of COL)if(n.includes(k))return v;return'#cfcac0'};
 const fmt=n=>n.toLocaleString('ru-RU');
 const stockLabel=n=>n>1000?'Очень много':n>500?'Много':n>100?'Достаточное количество':'Есть в наличии';
-const stockLabel=n=>n>1000?'Очень много':n>500?'Много':n>100?'Достаточное количество':'Есть в наличии';
 function swatch(it,big){
  if(it.img) return '<img src="'+(it.ph||it.img)+'" data-fb="'+it.img+'" alt="'+it.n+'" title="Увеличить" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="if(this.dataset.fb&&this.src.indexOf(this.dataset.fb)<0){this.src=this.dataset.fb}else{this.style.display=\'none\'}">';
  const m=it.s.match(/(\d+)\s*×\s*(\d+)/), w=+m[1], h=+m[2], k=(big?120:30)/Math.max(w,h);
@@ -495,7 +494,7 @@ const colorCounts={};ITEMS.forEach(it=>{const c=colorOf(it);colorCounts[c]=(colo
 const COLORS=Object.keys(colorCounts).sort((a,b)=>a==='Другие'?1:b==='Другие'?-1:a.localeCompare(b,'ru'));
 let cat='all', sel=new Set(), colorSel=new Set(), shown=40;
 $('#chips').innerHTML=TOP.map(k=>'<button class="chip" data-k="'+k+'" aria-pressed="false">'+k+'</button>').join('')+(hasOther?'<button class="chip" data-k="other" aria-pressed="false">Другие размеры</button>':'');
-$('#color-chips').innerHTML=COLORS.map(c=>'<button class="chip" data-color="'+c+'" aria-pressed="false">'+c+' <span class="sub">('+colorCounts[c]+')</span></a>').join('');
+$('#color-chips').innerHTML=COLORS.map(c=>'<button class="chip" data-color="'+c+'" aria-pressed="false">'+c+' <span class="sub">('+colorCounts[c]+')</span></button>').join('');
 function ok(it){
  const q=$('#q').value.trim().toLowerCase();
  return (cat==='all'||it.t===cat)&&(!sel.size||sel.has(it.k)||(sel.has('other')&&!TOP.includes(it.k)))&&(!colorSel.size||colorSel.has(colorOf(it)))&&(it.n+' '+(it.alias||'')+' '+it.s+' '+it.b+' '+(it.a||'')).toLowerCase().includes(q);
