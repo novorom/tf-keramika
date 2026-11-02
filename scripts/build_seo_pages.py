@@ -234,7 +234,7 @@ faq_addition = '<div><dt>Что означают обозначения сорт
 if 'Что означают обозначения сорта и ПК?' not in s:
     s = s.replace(faq_anchor, faq_addition + faq_anchor)
 canonical_home = SITE_URL + '/'
-home_graph = {'@context':'https://schema.org','@type':'Store','name':'ООО «Илтима»','url':canonical_home,'telephone':'+7-905-205-09-00','email':'novorom@mail.ru','areaServed':['Санкт-Петербург','Ленинградская область'],
+home_graph = {'@context':'https://schema.org','@type':'Store','name':'Илтима','url':canonical_home,'telephone':'+7-905-205-09-00','email':'novorom@mail.ru','areaServed':['Санкт-Петербург','Ленинградская область'],
     'address':{'@type':'PostalAddress','streetAddress':'ул. Заводская, участок 37','addressLocality':'Янино','addressRegion':'Ленинградская область','addressCountry':'RU'},
     'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':'09:00','closes':'18:00'}]}
 home_graph_json = json.dumps(home_graph, ensure_ascii=False, separators=(',',':')).replace('</','<\\/')
