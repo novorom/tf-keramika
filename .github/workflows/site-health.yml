@@ -1,0 +1,82 @@
+name: Iltima orders and SEO health
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Проверить все страницы карты сайта"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: iltima-site-health
+  cancel-in-progress: true
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Run checks
+        id: audit
+        continue-on-error: true
+        env:
+          FULL_CHECK: ${{ github.event_name == 'workflow_dispatch' && inputs.full || github.event.schedule == '17 4 * * *' }}
+        run: |
+          set -o pipefail
+          if [ "$FULL_CHECK" = "true" ]; then
+            python3 scripts/site_health_check.py --full | tee site-health-report.md
+          else
+            python3 scripts/site_health_check.py | tee site-health-report.md
+          fi
+
+      - name: Show report in the run summary
+        if: always()
+        run: |
+          if [ -f site-health-report.md ]; then
+            cat site-health-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Notify by GitHub issue
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+        with:
+          script: |
+            const fs = require('fs');
+            const title = '[Автопроверка] Сайт Илтима: заявки и SEO';
+            const report = fs.existsSync('site-health-report.md')
+              ? fs.readFileSync('site-health-report.md', 'utf8')
+              : 'Проверка не смогла сформировать отчёт. Посмотрите журнал GitHub Actions.';
+            const { owner, repo } = context.repo;
+            const open = await github.rest.issues.listForRepo({ owner, repo, state: 'open', per_page: 100 });
+            const existing = open.data.find(issue => issue.title === title);
+            const failed = process.env.AUDIT_OUTCOME !== 'success';
+            if (failed && !existing) {
+              await github.rest.issues.create({ owner, repo, title, body: `${report}\n\nЗапуск: ${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}` });
+            } else if (failed && existing) {
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, body: `${report}\n\nПоследняя проверка: ${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}` });
+            } else if (!failed && existing) {
+              await github.rest.issues.createComment({ owner, repo, issue_number: existing.number, body: `Проверка восстановилась.\n\n${report}` });
+              await github.rest.issues.update({ owner, repo, issue_number: existing.number, state: 'closed' });
+            }
+
+      - name: Save report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: iltima-site-health-${{ github.run_number }}
+          path: site-health-report.md
+          if-no-files-found: ignore
+          retention-days: 30
