@@ -8,7 +8,7 @@ const urls = [...new Set(changed.flatMap((file) => {
   if (file === 'index.html') return [`${base}/`];
   if (!file.endsWith('/index.html')) return [];
   const route = file.slice(0, -'index.html'.length);
-  if (!/^(products|catalog|brands|formats)\//.test(route)) return [];
+  if (!/^(products|catalog|brands|formats|colors|countries|buyers-guide|delivery-and-returns)\//.test(route)) return [];
   return [`${base}/${route}`];
 }))];
 

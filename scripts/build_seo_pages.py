@@ -57,6 +57,7 @@ for i,it in enumerate(items, 1):
         it['b'] = ''
     if it['n'] == 'ВAITEREK BEJ': it['n'] = 'Baiterek Beige'
     if it['n'] == 'В60324': it['n'] = 'B60324'
+    if it['n'] == 'B60324': it['b'] = 'Zerde Ceramics'
     if it['n'] == 'Гермес Короичневый': it['n'] = 'Гермес Коричневый'
     suffix = slugify(f"{it['s']} {it.get('g','')}")
     it['url'] = f"products/{slugify(it['n'])}-{suffix}/"
@@ -128,7 +129,7 @@ for i,it in enumerate(items):
     related_html=''.join(f'<li><a href="../{esc(other["url"].removeprefix("products/"))}">{esc(other["n"])} — {esc(other["s"])}</a></li>' for other in related)
     page=f'''<!doctype html>
 <html lang="ru"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{esc(canonical_url)}">
 <meta property="og:type" content="product"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Илтима"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{f'<meta property="og:image" content="{esc(SITE_URL + "/" + photo.lstrip("/"))}">' if photo else ''}
 {product_schema_tag}<script type="application/ld+json">{breadcrumb_json}</script>
@@ -184,7 +185,7 @@ for kind,slug,title,h1,intro in categories:
         price_class='price' if it.get('p') else 'price ask'
         cards.append(f'<a class="item" href="../../{esc(it["url"])}"><span class="thumb">{image}</span><span class="info"><strong>{esc(it["n"])}</strong><span>{esc(details)}</span><span>{stock_label(it["q"])}</span>{article}</span><span class="{price_class}">{esc(price)}</span></a>')
     cat_page=f'''<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>{esc(title)}</title><meta name="description" content="{esc(intro)}"><link rel="canonical" href="{esc(category_url)}"><meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Илтима"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(intro)}">
 <script type="application/ld+json">{category_breadcrumb_json}</script>
@@ -234,9 +235,12 @@ faq_addition = '<div><dt>Что означают обозначения сорт
 if 'Что означают обозначения сорта и ПК?' not in s:
     s = s.replace(faq_anchor, faq_addition + faq_anchor)
 canonical_home = SITE_URL + '/'
-home_graph = {'@context':'https://schema.org','@type':'Store','name':'Илтима','url':canonical_home,'telephone':'+7-905-205-09-00','email':'novorom@mail.ru','areaServed':['Санкт-Петербург','Ленинградская область'],'hasMerchantReturnPolicy':{'@type':'MerchantReturnPolicy','@id':SITE_URL+'/#return-policy','applicableCountry':'RU','returnPolicyCategory':'https://schema.org/MerchantReturnFiniteReturnWindow','merchantReturnDays':14,'description':'Возврат принимается на складе в Янино в течение 14 дней при сохранении товарного вида товара и упаковки.'},
-    'address':{'@type':'PostalAddress','streetAddress':'ул. Заводская, участок 37','addressLocality':'Янино','addressRegion':'Ленинградская область','addressCountry':'RU'},
-    'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':'09:00','closes':'18:00'}]}
+home_graph_match = next((m for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', s, re.S) if json.loads(m.group(1)).get('@type') == 'Store'), None)
+if home_graph_match is None:
+    raise RuntimeError('Homepage Store schema is missing; refusing to replace it with incomplete data.')
+home_graph = json.loads(home_graph_match.group(1))
+home_graph['sameAs'] = ['https://www.avito.ru/user/0f9d6bc281bab39ce62a9b63316d1548/profile']
+home_graph['hasMerchantReturnPolicy'].update({'returnFees':'https://schema.org/FreeReturn','returnMethod':'https://schema.org/ReturnInStore'})
 home_graph_json = json.dumps(home_graph, ensure_ascii=False, separators=(',',':')).replace('</','<\\/')
 if 'rel="canonical" href="'+canonical_home+'"' not in s:
     s = s.replace('<meta name="viewport" content="width=device-width, initial-scale=1">', '<meta name="viewport" content="width=device-width, initial-scale=1">\n<link rel="canonical" href="'+canonical_home+'">\n<meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Илтима"><meta property="og:image" content="'+SITE_URL+'/img/photos/003.jpg"><meta property="og:image:alt" content="Плитка Bianco Белый из каталога Илтима"><meta name="twitter:card" content="summary_large_image">\n<script type="application/ld+json">'+home_graph_json+'</script>')
