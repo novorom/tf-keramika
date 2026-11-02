@@ -67,8 +67,8 @@ for i,it in enumerate(items):
     url = it['url']
     product_type = 'керамическая плитка' if it['t'] == 'tile' else 'керамогранит'
     grade_text = f", {it['g']}" if it.get('g') else ''
-    dimensions = re.search(r'(\d+)\s*×\s*(\d+)', size)
-    title_size = f"{dimensions.group(1)}×{dimensions.group(2)}" if dimensions else size
+    dimensions = re.search(r'(\d+)\s*×\s*(\d+)(?:\s*×\s*(\d+))?', size)
+    title_size = '×'.join(part for part in dimensions.groups() if part) if dimensions else size
     title = f"Купить {name} {title_size}{grade_text} — {product_type}"
     if brand and brand.lower() not in name.lower() and len(title) + len(', '+brand) + len(' в СПб') <= 100:
         title += ', ' + brand
