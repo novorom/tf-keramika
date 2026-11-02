@@ -16,7 +16,8 @@ METRIKA = '''<!-- Yandex.Metrika counter -->
     ym(113474855, 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer:document.referrer, url:location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/113474855" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->'''
+<!-- /Yandex.Metrika counter -->
+<script src="/js/analytics-goals.js" defer></script>'''
 index_path = root / 'index.html'
 s = index_path.read_text()
 m = re.search(r'const ITEMS=(\[.*?\]);\n', s)
@@ -252,7 +253,9 @@ for page_path in root.rglob('*.html'):
     page = page_path.read_text()
     page_path.write_text(page.replace('index.html', ''))
 
-(root/'vercel.json').write_text(json.dumps({'$schema':'https://openapi.vercel.sh/vercel.json','trailingSlash':True,'redirects':json.loads((Path(__file__).resolve().parent/'legacy-urls.json').read_text())},ensure_ascii=False,indent=2)+'\n')
+redirects = json.loads((Path(__file__).resolve().parent/'legacy-urls.json').read_text())
+redirects.insert(0, {'source':'/:path*','has':[{'type':'host','value':'www.iltima.ru'}],'destination':'https://iltima.ru/:path*','permanent':True})
+(root/'vercel.json').write_text(json.dumps({'$schema':'https://openapi.vercel.sh/vercel.json','trailingSlash':True,'redirects':redirects},ensure_ascii=False,indent=2)+'\n')
 
 sitemap_urls = [canonical_home, SITE_URL+'/catalog/keramicheskaya-plitka-spb/', SITE_URL+'/catalog/keramogranit-spb/'] + [SITE_URL+'/'+it['url'].lstrip('/') for it in items]
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{html.escape(url)}</loc><lastmod>2026-10-01</lastmod></url>\n' for url in sitemap_urls) + '</urlset>\n'

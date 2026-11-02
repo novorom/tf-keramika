@@ -21,7 +21,8 @@ METRIKA = '''<!-- Yandex.Metrika counter -->
     ym(113474855, 'init', {ssr:true, clickmap:true, ecommerce:"dataLayer", referrer:document.referrer, url:location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/113474855" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->'''
+<!-- /Yandex.Metrika counter -->
+<script src="/js/analytics-goals.js" defer></script>'''
 TODAY = '2026-10-05'
 source = (ROOT / 'index.html').read_text()
 items = json.loads(re.search(r'const ITEMS=(\[.*?\]);\n', source).group(1))

@@ -56,6 +56,7 @@
       });
       const result = await response.json();
       if (!result.success) throw new Error('Request was not accepted');
+      window.iltimaAnalytics?.reachGoal('callback_request_sent');
       form.hidden = true;
       success.hidden = false;
       form.reset();

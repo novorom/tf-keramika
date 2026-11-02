@@ -138,6 +138,7 @@ table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{text-align:left;
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/113474855" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<script src="/js/analytics-goals.js" defer></script>
 </head>
 <body>
 <header><div class="wrap"><span class="brand">Илтима</span><button class="btn" id="hcall" type="button">Заказать звонок</button></div></header>
@@ -577,6 +578,7 @@ $('#cbform').onsubmit=async e=>{
   const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:CFG.web3formsKey,subject:'Заказ звонка: Илтима',from_name:'Сайт Илтима',name:name||'Не указано',phone:phone,message:what})});
   const d=await r.json();
   if(!d.success)throw 0;
+  window.iltimaAnalytics?.reachGoal('callback_request_sent');
   $('#cbform').hidden=true;$('#cbok').hidden=false;$('#cbform').reset();
  }catch(_){st.innerHTML='Не удалось отправить. Напишите нам в <a href="'+tg+'" target="_blank" rel="noopener">Telegram</a>.'}
  btn.disabled=false;
