@@ -129,7 +129,7 @@ for i,it in enumerate(items):
     related_html=''.join(f'<li><a href="../{esc(other["url"].removeprefix("products/"))}">{esc(other["n"])} — {esc(other["s"])}</a></li>' for other in related)
     page=f'''<!doctype html>
 <html lang="ru"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="describedby" href="https://iltima.ru/llms.txt">
 <title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><link rel="canonical" href="{esc(canonical_url)}">
 <meta property="og:type" content="product"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Илтима"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{f'<meta property="og:image" content="{esc(SITE_URL + "/" + photo.lstrip("/"))}">' if photo else ''}
 {product_schema_tag}<script type="application/ld+json">{breadcrumb_json}</script>
@@ -185,7 +185,7 @@ for kind,slug,title,h1,intro in categories:
         price_class='price' if it.get('p') else 'price ask'
         cards.append(f'<a class="item" href="../../{esc(it["url"])}"><span class="thumb">{image}</span><span class="info"><strong>{esc(it["n"])}</strong><span>{esc(details)}</span><span>{stock_label(it["q"])}</span>{article}</span><span class="{price_class}">{esc(price)}</span></a>')
     cat_page=f'''<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="describedby" href="https://iltima.ru/llms.txt">
 <title>{esc(title)}</title><meta name="description" content="{esc(intro)}"><link rel="canonical" href="{esc(category_url)}"><meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Илтима"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(intro)}">
 <script type="application/ld+json">{category_breadcrumb_json}</script>
