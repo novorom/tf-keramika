@@ -234,7 +234,7 @@ faq_addition = '<div><dt>Что означают обозначения сорт
 if 'Что означают обозначения сорта и ПК?' not in s:
     s = s.replace(faq_anchor, faq_addition + faq_anchor)
 canonical_home = SITE_URL + '/'
-home_graph = {'@context':'https://schema.org','@type':'Store','name':'Илтима','url':canonical_home,'telephone':'+7-905-205-09-00','email':'novorom@mail.ru','areaServed':['Санкт-Петербург','Ленинградская область'],
+home_graph = {'@context':'https://schema.org','@type':'Store','name':'Илтима','url':canonical_home,'telephone':'+7-905-205-09-00','email':'novorom@mail.ru','areaServed':['Санкт-Петербург','Ленинградская область'],'hasMerchantReturnPolicy':{'@type':'MerchantReturnPolicy','@id':SITE_URL+'/#return-policy','applicableCountry':'RU','returnPolicyCategory':'https://schema.org/MerchantReturnFiniteReturnWindow','merchantReturnDays':14,'description':'Возврат принимается на складе в Янино в течение 14 дней при сохранении товарного вида товара и упаковки.'},
     'address':{'@type':'PostalAddress','streetAddress':'ул. Заводская, участок 37','addressLocality':'Янино','addressRegion':'Ленинградская область','addressCountry':'RU'},
     'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':'09:00','closes':'18:00'}]}
 home_graph_json = json.dumps(home_graph, ensure_ascii=False, separators=(',',':')).replace('</','<\\/')
@@ -263,7 +263,7 @@ redirects = json.loads((Path(__file__).resolve().parent/'legacy-urls.json').read
 redirects.insert(0, {'source':'/:path*','has':[{'type':'host','value':'www.iltima.ru'}],'destination':'https://iltima.ru/:path*','permanent':True})
 (root/'vercel.json').write_text(json.dumps({'$schema':'https://openapi.vercel.sh/vercel.json','trailingSlash':True,'redirects':redirects},ensure_ascii=False,indent=2)+'\n')
 
-sitemap_urls = [canonical_home, SITE_URL+'/catalog/keramicheskaya-plitka-spb/', SITE_URL+'/catalog/keramogranit-spb/'] + [SITE_URL+'/'+it['url'].lstrip('/') for it in items]
+sitemap_urls = [canonical_home, SITE_URL+'/catalog/keramicheskaya-plitka-spb/', SITE_URL+'/catalog/keramogranit-spb/', SITE_URL+'/buyers-guide/', SITE_URL+'/delivery-and-returns/'] + [SITE_URL+'/'+it['url'].lstrip('/') for it in items]
 old_sitemap_path = root / 'sitemap.xml'
 old_lastmods = dict(re.findall(r'<loc>(.*?)</loc><lastmod>(.*?)</lastmod>', old_sitemap_path.read_text())) if old_sitemap_path.exists() else {}
 today = date.today().isoformat()
