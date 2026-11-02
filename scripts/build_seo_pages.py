@@ -1,4 +1,5 @@
 import json, re, html, unicodedata, sys, shutil
+from datetime import date
 from urllib.parse import quote
 from pathlib import Path
 
@@ -63,6 +64,7 @@ for i,it in enumerate(items, 1):
 # Product pages are static HTML so their key content exists before scripts run.
 products_dir = root / 'products'
 products_dir.mkdir(exist_ok=True)
+changed_product_urls = set()
 for i,it in enumerate(items):
     name, brand, size = it['n'], it['b'], it['s']
     url = it['url']
@@ -147,7 +149,11 @@ for i,it in enumerate(items):
 </body></html>'''
     folder=products_dir / url.removeprefix('products/').strip('/')
     folder.mkdir(parents=True,exist_ok=True)
-    (folder/'index.html').write_text(page)
+    page_path = folder/'index.html'
+    page = page.replace('index.html', '')
+    if not page_path.exists() or page_path.read_text() != page:
+        changed_product_urls.add(SITE_URL + '/' + url.lstrip('/'))
+    page_path.write_text(page)
 
 # Search landing pages make the two main product categories directly discoverable.
 categories = [
@@ -228,7 +234,7 @@ faq_addition = '<div><dt>Что означают обозначения сорт
 if 'Что означают обозначения сорта и ПК?' not in s:
     s = s.replace(faq_anchor, faq_addition + faq_anchor)
 canonical_home = SITE_URL + '/'
-home_graph = {'@context':'https://schema.org','@type':'Store','name':'ООО «Илтима»','url':canonical_home,'email':'novorom@mail.ru',
+home_graph = {'@context':'https://schema.org','@type':'Store','name':'ООО «Илтима»','url':canonical_home,'telephone':'+7-905-205-09-00','email':'novorom@mail.ru','areaServed':['Санкт-Петербург','Ленинградская область'],
     'address':{'@type':'PostalAddress','streetAddress':'ул. Заводская, участок 37','addressLocality':'Янино','addressRegion':'Ленинградская область','addressCountry':'RU'},
     'openingHoursSpecification':[{'@type':'OpeningHoursSpecification','dayOfWeek':['Monday','Tuesday','Wednesday','Thursday','Friday'],'opens':'09:00','closes':'18:00'}]}
 home_graph_json = json.dumps(home_graph, ensure_ascii=False, separators=(',',':')).replace('</','<\\/')
@@ -258,7 +264,13 @@ redirects.insert(0, {'source':'/:path*','has':[{'type':'host','value':'www.iltim
 (root/'vercel.json').write_text(json.dumps({'$schema':'https://openapi.vercel.sh/vercel.json','trailingSlash':True,'redirects':redirects},ensure_ascii=False,indent=2)+'\n')
 
 sitemap_urls = [canonical_home, SITE_URL+'/catalog/keramicheskaya-plitka-spb/', SITE_URL+'/catalog/keramogranit-spb/'] + [SITE_URL+'/'+it['url'].lstrip('/') for it in items]
-sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'  <url><loc>{html.escape(url)}</loc><lastmod>2026-10-01</lastmod></url>\n' for url in sitemap_urls) + '</urlset>\n'
+old_sitemap_path = root / 'sitemap.xml'
+old_lastmods = dict(re.findall(r'<loc>(.*?)</loc><lastmod>(.*?)</lastmod>', old_sitemap_path.read_text())) if old_sitemap_path.exists() else {}
+today = date.today().isoformat()
+sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(
+    f'  <url><loc>{html.escape(url)}</loc><lastmod>{today if url in changed_product_urls else old_lastmods.get(url, "2026-10-01")}</lastmod></url>\n'
+    for url in sitemap_urls
+) + '</urlset>\n'
 (root/'sitemap.xml').write_text(sitemap)
 (root/'robots.txt').write_text('User-agent: Yandex\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: *\nAllow: /\n\nSitemap: '+SITE_URL+'/sitemap.xml\n')
 
